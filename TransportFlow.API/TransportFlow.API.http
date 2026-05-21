@@ -1,0 +1,6 @@
+@TransportFlow.API_HostAddress = http://localhost:5071
+
+GET {{TransportFlow.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
