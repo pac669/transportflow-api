@@ -194,15 +194,19 @@
   "components": {
     "schemas": {
       "CreateDeliveryDto": {
+        "required": [
+          "address",
+          "customerName"
+        ],
         "type": "object",
         "properties": {
           "customerName": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "address": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "deliveryDate": {
             "type": "string",
@@ -237,6 +241,10 @@
         "additionalProperties": false
       },
       "DeliveryDto": {
+        "required": [
+          "address",
+          "customerName"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -244,12 +252,14 @@
             "format": "int32"
           },
           "customerName": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 100,
+            "minLength": 2,
+            "type": "string"
           },
           "address": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 100,
+            "minLength": 2,
+            "type": "string"
           },
           "deliveryDate": {
             "type": "string",
