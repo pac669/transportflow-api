@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using TransportFlow.API.Data;
 using TransportFlow.API.Models;
+using TransportFlow.API.DTOs;
 
 namespace TransportFlow.API.Controllers
 {
@@ -18,22 +19,50 @@ namespace TransportFlow.API.Controllers
 
         // GET: api/deliveries
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Delivery>>> GetDeliveries()
+        public async Task<ActionResult<IEnumerable<DeliveryDto>>> GetDeliveries()
         {
-            return await _context.Deliveries.ToListAsync();
+            var deliveries = await _context.Deliveries
+                .Select(d => new DeliveryDto
+                {
+                    Id = d.Id,
+                    CustomerName = d.CustomerName,
+                    Address = d.Address,
+                    DeliveryDate = d.DeliveryDate,
+                    Completed = d.Completed
+                })
+                .ToListAsync();
+
+            return Ok(deliveries);
         }
 
         // POST: api/deliveries
         [HttpPost]
-        public async Task<ActionResult<Delivery>> CreateDelivery(Delivery delivery)
+        public async Task<ActionResult<DeliveryDto>> CreateDelivery(CreateDeliveryDto dto)
         {
+            var delivery = new Delivery
+            {
+                CustomerName = dto.CustomerName,
+                Address = dto.Address,
+                DeliveryDate = dto.DeliveryDate,
+                Completed = false
+            };
+
             _context.Deliveries.Add(delivery);
 
             await _context.SaveChangesAsync();
 
-            return Ok(delivery);
+            var result = new DeliveryDto
+            {
+                Id = delivery.Id,
+                CustomerName = delivery.CustomerName,
+                Address = delivery.Address,
+                DeliveryDate = delivery.DeliveryDate,
+                Completed = delivery.Completed
+            };
+
+            return Ok(result);
         }
-        
+
         // GET: api/deliveries/1
 
         [HttpGet("{id}")]

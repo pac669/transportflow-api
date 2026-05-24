@@ -9,7 +9,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[TransportFlow.API.Models.Delivery, TransportFlow.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[TransportFlow.API.DTOs.DeliveryDto, TransportFlow.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -28,14 +28,14 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "delivery",
-        "Type": "TransportFlow.API.Models.Delivery",
+        "Name": "dto",
+        "Type": "TransportFlow.API.DTOs.CreateDeliveryDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "TransportFlow.API.Models.Delivery",
+        "Type": "TransportFlow.API.DTOs.DeliveryDto",
         "MediaTypes": [
           "text/plain",
           "application/json",

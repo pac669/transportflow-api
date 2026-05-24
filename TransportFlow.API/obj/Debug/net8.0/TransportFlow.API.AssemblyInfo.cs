@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TransportFlow.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+68c84c79e849b33945ded7b3dcf377f0cc8884a2")]
 [assembly: System.Reflection.AssemblyProductAttribute("TransportFlow.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TransportFlow.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
