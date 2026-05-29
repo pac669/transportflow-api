@@ -61,7 +61,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "TransportFlow.API.Models.Delivery",
+        "Type": "TransportFlow.API.DTOs.DeliveryDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -85,8 +85,8 @@
         "IsRequired": true
       },
       {
-        "Name": "delivery",
-        "Type": "TransportFlow.API.Models.Delivery",
+        "Name": "dto",
+        "Type": "TransportFlow.API.DTOs.UpdateDeliveryDto",
         "IsRequired": true
       }
     ],

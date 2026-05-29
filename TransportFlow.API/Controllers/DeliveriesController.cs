@@ -34,6 +34,46 @@ namespace TransportFlow.API.Controllers
 
             return Ok(deliveries);
         }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<DeliveryDto>> GetDelivery(int id)
+        {
+            var delivery = await _context.Deliveries.FindAsync(id);
+
+            if (delivery == null)
+            {
+                return NotFound();
+            }
+
+            var dto = new DeliveryDto
+            {
+                Id = delivery.Id,
+                CustomerName = delivery.CustomerName,
+                Address = delivery.Address,
+                DeliveryDate = delivery.DeliveryDate,
+                Completed = delivery.Completed
+            };
+
+            return Ok(dto);
+        }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateDelivery(int id, UpdateDeliveryDto dto)
+        {
+            var delivery = await _context.Deliveries.FindAsync(id);
+
+            if (delivery == null)
+            {
+                return NotFound();
+            }
+
+            delivery.CustomerName = dto.CustomerName;
+            delivery.Address = dto.Address;
+            delivery.DeliveryDate = dto.DeliveryDate;
+            delivery.Completed = dto.Completed;
+
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
 
         // POST: api/deliveries
         [HttpPost]
@@ -63,35 +103,6 @@ namespace TransportFlow.API.Controllers
             return Ok(result);
         }
 
-        // GET: api/deliveries/1
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Delivery>> GetDelivery(int id)
-        {
-            var delivery = await _context.Deliveries.FindAsync(id);
-
-            if (delivery == null)
-            {
-                return NotFound();
-            }
-
-            return delivery;
-        }
-        // PUT: api/deliveries/1
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateDelivery(int id, Delivery delivery)
-        {
-            if (id != delivery.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(delivery).State = EntityState.Modified;
-
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
         // DELETE: api/deliveries/1
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDelivery(int id)
